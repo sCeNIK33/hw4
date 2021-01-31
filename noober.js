@@ -7,6 +7,16 @@ async function pageLoaded() {
   
   // 🔥 start here: write code to loop through the rides
   
+  let rides = json.rides
+
+  for(let i=0; i<json.length; i++) {
+    if (json[i].length>1){
+      levelOfService = "Noober Pool"
+      outputElement
+    } let eachProduct = products[i]
+    renderProduct(eachProduct)
+  }
+
 
   function renderProduct(product) {
     document.querySelector('.products').insertAdjacentHTML('beforeend', `
