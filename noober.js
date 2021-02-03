@@ -16,9 +16,17 @@ async function pageLoaded() {
   let levelOfService
   let outputElement = document.querySelector('.rides')
 
+
   for(let i=0; i<json.length;i++) {
-  if(json[i].length > 1) {
+    if(json[i].length > 1) {
     levelOfService = "Noober Pool"
+  } else if(json[i].purpleRequested) {
+    levelOfService = "Noober Purple"
+  } else if(json[i].numberOfPassengers > 3) {
+    levelOfService = "Noober XL"
+  } else {
+    levelOfService = "Noober X"
+  }
     outputElement.insertAdjacentHTML("beforeend",`
     
   <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
@@ -64,127 +72,135 @@ async function pageLoaded() {
     </div>
   </div> `)
       }
-  } else if(json[i].purpleRequested) {
-    levelOfService = "Noober Purple"
-    outputElement.insertAdjacentHTML("beforeend",`
+  // } else if(json[i].purpleRequested == true) {
+  //   levelOfService = "Noober Purple"
+  //   outputElement.insertAdjacentHTML("beforeend",`
       
-    <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
-    <i class="fas fa-car-side"></i>
-    <span>${levelOfService}</span>
-  </h1>    
-    `)
+  //   <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+  //   <i class="fas fa-car-side"></i>
+  //   <span>${levelOfService}</span>
+  // </h1>    
+  //   `)
 
-    outputElement.insertAdjacentHTML("beforeend",`
-    <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
-      <i class="fas fa-car-side"></i>
-      <span>Noober Purple</span>
-    </h1>
+  //     passengerNamePurp = json[i].passengerDetails.first + [" "] + json[i].passengerDetails.last
+  //     passengerPhonePurp = json[i].passengerDetails.phoneNumber
+  //     passengerNumberOfPassengersPurp = json[i].numberOfPassengers
+  //     passengerPickupAddressLine1Purp = json[i].pickupLocation.address
+  //     passengerPickupAddressLine2Purp = json[i].pickupLocation.city + ', ' + json[i].pickupLocation.state + ' ' + json[i].pickupLocation.zip
+  //     passengerDropoffAddressLine1Purp = json[i].dropoffLocation.address
+  //     passengerDropoffAddressLine2Purp = json[i].dropoffLocation.city + ', ' + json[i].dropoffLocation.state + ' ' + json[i].dropoffLocation.zip
 
-    <div class="border-4 border-purple-500 p-4 my-4 text-left">
-      <div class="flex">
-        <div class="w-1/2">
-          <h2 class="text-2xl py-1">${passengerName}</h2>
-          <p class="font-bold text-gray-600">${passengerPhone}</p>
-        </div>
-        <div class="w-1/2 text-right">
-          <span class="rounded-xl bg-purple-600 text-white p-2">
-          ${passengerNumberOfPassengers}
-          </span>
-        </div>
-      </div>
-      <div class="mt-4 flex">
-        <div class="w-1/2">
-          <div class="text-sm font-bold text-gray-600">PICKUP</div>
-          <p>${passengerPickupAddressLine1}</p>
-          <p>${passengerPickupAddressLine2}</p>
-        </div>
-        <div class="w-1/2">
-          <div class="text-sm font-bold text-gray-600">DROPOFF</div>
-          <p>${passengerDropoffAddressLine1}</p>
-          <p>${passengerDropoffAddressLine2}</p>
-        </div>
-      </div>
-    </div>
-    `)
+  //   outputElement.insertAdjacentHTML("beforeend",`
+  //   <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+  //     <i class="fas fa-car-side"></i>
+  //     <span>Noober Purple</span>
+  //   </h1>
+
+  //   <div class="border-4 border-purple-500 p-4 my-4 text-left">
+  //     <div class="flex">
+  //       <div class="w-1/2">
+  //         <h2 class="text-2xl py-1">${passengerNamePurp}</h2>
+  //         <p class="font-bold text-gray-600">${passengerPhonePurp}</p>
+  //       </div>
+  //       <div class="w-1/2 text-right">
+  //         <span class="rounded-xl bg-purple-600 text-white p-2">
+  //         ${passengerNumberOfPassengersPurp}
+  //         </span>
+  //       </div>
+  //     </div>
+  //     <div class="mt-4 flex">
+  //       <div class="w-1/2">
+  //         <div class="text-sm font-bold text-gray-600">PICKUP</div>
+  //         <p>${passengerPickupAddressLine1Purp}</p>
+  //         <p>${passengerPickupAddressLine2Purp}</p>
+  //       </div>
+  //       <div class="w-1/2">
+  //         <div class="text-sm font-bold text-gray-600">DROPOFF</div>
+  //         <p>${passengerDropoffAddressLine1Purp}</p>
+  //         <p>${passengerDropoffAddressLine2Purp}</p>
+  //       </div>
+  //     </div>
+  //   </div>
+  //   `)
     
   
-  } else if(json[i].numberOfPassengers > 3) {
-    levelOfService = "Noober XL"
-    outputElement.insertAdjacentHTML("beforeend",`
+  // } else if(json[i].numberOfPassengers > 3) {
+  //   levelOfService = "Noober XL"
+  //   outputElement.insertAdjacentHTML("beforeend",`
     
-    <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
-      <i class="fas fa-car-side"></i>
-      <span>${levelOfService}</span>
-    </h1>
-    `)
+  //   <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+  //     <i class="fas fa-car-side"></i>
+  //     <span>${levelOfService}</span>
+  //   </h1>
+  //   `)
 
-    outputElement.insertAdjacentHTML("beforeend",`
-    <div class="border-4 border-gray-900 p-4 my-4 text-left">
-      <div class="flex">
-        <div class="w-1/2">
-          <h2 class="text-2xl py-1">${passengerName}</h2>
-          <p class="font-bold text-gray-600">${passengerPhone}</p>
-        </div>
-        <div class="w-1/2 text-right">
-          <span class="rounded-xl bg-gray-600 text-white p-2">
-          ${passengerNumberOfPassengers}
-          </span>
-        </div>
-      </div>
-      <div class="mt-4 flex">
-        <div class="w-1/2">
-          <div class="text-sm font-bold text-gray-600">PICKUP</div>
-          <p>${passengerPickupAddressLine1}</p>
-          <p>${passengerPickupAddressLine2}</p>
-        </div>
-        <div class="w-1/2">
-          <div class="text-sm font-bold text-gray-600">DROPOFF</div>
-          <p>${passengerDropoffAddressLine1}</p>
-          <p>${passengerDropoffAddressLine2}</p>
-        </div>
-      </div>
-    </div>
-      `)
+  //   outputElement.insertAdjacentHTML("beforeend",`
+  //   <div class="border-4 border-gray-900 p-4 my-4 text-left">
+  //     <div class="flex">
+  //       <div class="w-1/2">
+  //         <h2 class="text-2xl py-1">${passengerName}</h2>
+  //         <p class="font-bold text-gray-600">${passengerPhone}</p>
+  //       </div>
+  //       <div class="w-1/2 text-right">
+  //         <span class="rounded-xl bg-gray-600 text-white p-2">
+  //         ${passengerNumberOfPassengers}
+  //         </span>
+  //       </div>
+  //     </div>
+  //     <div class="mt-4 flex">
+  //       <div class="w-1/2">
+  //         <div class="text-sm font-bold text-gray-600">PICKUP</div>
+  //         <p>${passengerPickupAddressLine1}</p>
+  //         <p>${passengerPickupAddressLine2}</p>
+  //       </div>
+  //       <div class="w-1/2">
+  //         <div class="text-sm font-bold text-gray-600">DROPOFF</div>
+  //         <p>${passengerDropoffAddressLine1}</p>
+  //         <p>${passengerDropoffAddressLine2}</p>
+  //       </div>
+  //     </div>
+  //   </div>
+  //     `)
 
-  } else {
-    levelOfService = "Noober X"
-    outputElement.insertAdjacentHTML("beforeend",`
+  // } else {
+  //   levelOfService = "Noober X"
+  //   outputElement.insertAdjacentHTML("beforeend",`
 
-    <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
-      <i class="fas fa-car-side"></i>
-      <span>${levelOfService}</span>
-    </h1>
-    `)
+  //   <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+  //     <i class="fas fa-car-side"></i>
+  //     <span>${levelOfService}</span>
+  //   </h1>
+  //   `)
 
-    outputElement.insertAdjacentHTML("beforeend",`
-    <div class="border-4 border-gray-900 p-4 my-4 text-left">
-    <div class="flex">
-      <div class="w-1/2">
-        <h2 class="text-2xl py-1">${passengerName}</h2>
-        <p class="font-bold text-gray-600">${passengerPhone}</p>
-      </div>
-      <div class="w-1/2 text-right">
-        <span class="rounded-xl bg-gray-600 text-white p-2">
-        ${passengerNumberOfPassengers}
-        </span>
-      </div>
-    </div>
-    <div class="mt-4 flex">
-      <div class="w-1/2">
-        <div class="text-sm font-bold text-gray-600">PICKUP</div>
-        <p>${passengerPickupAddressLine1}</p>
-        <p>${passengerPickupAddressLine2}</p>
-      </div>
-      <div class="w-1/2">
-        <div class="text-sm font-bold text-gray-600">DROPOFF</div>
-        <p>${passengerDropoffAddressLine1}</p>
-        <p>${passengerDropoffAddressLine2}</p>
-      </div>
-    </div>
-  </div>
-  `)
+  //   outputElement.insertAdjacentHTML("beforeend",`
+  //   <div class="border-4 border-gray-900 p-4 my-4 text-left">
+  //   <div class="flex">
+  //     <div class="w-1/2">
+  //       <h2 class="text-2xl py-1">${passengerName}</h2>
+  //       <p class="font-bold text-gray-600">${passengerPhone}</p>
+  //     </div>
+  //     <div class="w-1/2 text-right">
+  //       <span class="rounded-xl bg-gray-600 text-white p-2">
+  //       ${passengerNumberOfPassengers}
+  //       </span>
+  //     </div>
+  //   </div>
+  //   <div class="mt-4 flex">
+  //     <div class="w-1/2">
+  //       <div class="text-sm font-bold text-gray-600">PICKUP</div>
+  //       <p>${passengerPickupAddressLine1}</p>
+  //       <p>${passengerPickupAddressLine2}</p>
+  //     </div>
+  //     <div class="w-1/2">
+  //       <div class="text-sm font-bold text-gray-600">DROPOFF</div>
+  //       <p>${passengerDropoffAddressLine1}</p>
+  //       <p>${passengerDropoffAddressLine2}</p>
+  //     </div>
+  //   </div>
+  // </div>
+  // `)
 
-  }
+  // }
 }
 }
 window.addEventListener('DOMContentLoaded', pageLoaded)
