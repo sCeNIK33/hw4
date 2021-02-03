@@ -17,7 +17,7 @@ async function pageLoaded() {
   let levelOfService
   
   for(let i=0; i<json.length;i++) {
-    if(json[i].length > 1) {
+  if(json[i].length > 1) {
     levelOfService = "Noober Pool"
   } else if(json[i].purpleRequested) {
     levelOfService = "Noober Purple"
@@ -25,14 +25,23 @@ async function pageLoaded() {
     levelOfService = "Noober XL"
   } else {
     levelOfService = "Noober X"
-  }
     outputElement.insertAdjacentHTML("beforeend",`
+
+    
     
   <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
     <i class="fas fa-car-side"></i>
     <span>${levelOfService}</span>
   </h1>    
     `)
+
+      // } else if(json[i].purpleRequested) {
+  //   levelOfService = "Noober Purple"
+  // } else if(json[i].numberOfPassengers > 3) {
+  //   levelOfService = "Noober XL"
+  // } else {
+  //   levelOfService = "Noober X"
+  // }
 
       for(let j=0; j<json[i].length; j++) {
       passengerName = json[i][j].passengerDetails.first + [" "] + json[i][j].passengerDetails.last
@@ -71,8 +80,7 @@ async function pageLoaded() {
     </div>
   </div> `)
       
-  // } else if (json[i].purpleRequested) {
-  //   levelOfService = "Noober Purple"
+  } if (levelOfService = "Noober Purple") {
     outputElement.insertAdjacentHTML("beforeend",`
       
     <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
@@ -123,8 +131,7 @@ async function pageLoaded() {
     `)
     
   
-  // } else if(json[i].numberOfPassengers > 3) {
-  //   levelOfService = "Noober XL"
+  } if(levelOfService = "Noober XL") {
     outputElement.insertAdjacentHTML("beforeend",`
     
     <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
@@ -161,8 +168,7 @@ async function pageLoaded() {
     </div>
       `)
 
-  // } else {
-  //   levelOfService = "Noober X"
+  } if(levelOfService = "Noober X") {
     outputElement.insertAdjacentHTML("beforeend",`
 
     <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
@@ -458,4 +464,4 @@ window.addEventListener('DOMContentLoaded', pageLoaded)
 // }
 // }
 // window.addEventListener('DOMContentLoaded', pageLoaded)
-  
+}
