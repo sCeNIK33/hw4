@@ -1,5 +1,5 @@
 
-function renderRide(ride, levelOfService, border, color) {
+function renderRide(ride, border, color) {
   document.querySelector('.rides').insertAdjacentHTML('beforeend', `
     <div class="border-4 ${border} p-4 my-4 text-left">
       <div class="flex">
@@ -39,34 +39,49 @@ async function pageLoaded() {
 
   for (let i = 0; i < json.length; i++) {
     let ride = json[i]
-    for (let j = 0; j < ride.length; j++) {
-      let legRide = ride[j]
-      if (legRide.length > 1) {
-        levelOfService = 'Noober Pool'
-        border = `border-gray-900`
-        color = `bg-gray-600`
-        document.querySelector('.rides').insertAdjacentHTML('beforeend', `
-        <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
-        <i class="fas fa-car-side"></i>
-        <span>${levelOfService}</span>
-        </h1>`)
-        renderRide(legRide, levelOfService, border, color)
-      } else if (ride[0].purpleRequested) {
-        levelOfService = 'Noober Purple'
-        border = `border-purple-500`
-        color = `bg-purple-600`
-        renderRide(legRide, levelOfService, border, color)
-      } else if (ride[0].numberOfPassengers > 3) {
-        levelOfService = 'Noober XL'
-        border = `border-gray-900`
-        color = `bg-gray-600`
-        renderRide(legRide, levelOfService, border, color)
-      } else {
-        levelOfService = 'Noober X'
-        border = `border-gray-900`
-        color = `bg-gray-600`
-        renderRide(legRide, levelOfService, border, color)
+    if (ride.length > 1) {
+      levelOfService = 'Noober Pool'
+      border = `border-gray-900`
+      color = `bg-gray-600`
+      document.querySelector('.rides').insertAdjacentHTML('beforeend', `
+      <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+      <i class="fas fa-car-side"></i>
+      <span>${levelOfService}</span>
+      </h1>`)
+      for (let j = 0; j < ride.length; j++) {
+        let legRide = ride[j]
+        renderRide(legRide, border, color)
       }
+    } else if (ride[0].purpleRequested) {
+      levelOfService = 'Noober Purple'
+      border = `border-purple-500`
+      color = `bg-purple-600`
+      document.querySelector('.rides').insertAdjacentHTML('beforeend', `
+      <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+      <i class="fas fa-car-side"></i>
+      <span>${levelOfService}</span>
+      </h1>`)
+      renderRide(ride[0], border, color)
+    } else if (ride[0].numberOfPassengers > 3) {
+      levelOfService = 'Noober XL'
+      border = `border-gray-900`
+      color = `bg-gray-600`
+      document.querySelector('.rides').insertAdjacentHTML('beforeend', `
+      <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+      <i class="fas fa-car-side"></i>
+      <span>${levelOfService}</span>
+      </h1>`)
+      renderRide(ride[0], border, color)
+    } else {
+      levelOfService = 'Noober X'
+      border = `border-gray-900`
+      color = `bg-gray-600`
+      document.querySelector('.rides').insertAdjacentHTML('beforeend', `
+      <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+      <i class="fas fa-car-side"></i>
+      <span>${levelOfService}</span>
+      </h1>`)
+      renderRide(ride[0], border, color)
     }
   }
 }
